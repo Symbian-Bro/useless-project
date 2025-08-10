@@ -17,3 +17,4 @@ serial communication. So, port checker should be placed first.
 Currently, the threshold is set after a delay of 5 minutes. This was implemented to give users 
 enough time to settle down. Now, I've got an idea that it would be better to record the LDR 
 for a period of time and then take the average to set the threshold. It sounds better I guess :)
+(Lemme go do that then)

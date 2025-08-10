@@ -1,8 +1,6 @@
 import serial
 import time
-
-delay_seconds = 300 #Time after which the threshold will be set (Refer to Logic)
-time.sleep(delay_seconds)
+import numpy as po
 
 def serial_reader(port,bitrate=9600,timeout=1):
     data = serial.Serial(port, bitrate, timeout=timeout)
@@ -18,10 +16,17 @@ def serial_reader(port,bitrate=9600,timeout=1):
 
 port_id = port_finder()
 
-threshold = serial_reader('port_id', 9600)
+current_time = time.time()
+i = 0
+value = []
+while (time.time() - current_time < 60):
+    value[i] = serial_reader(port_id, 9600)
+    i = i+1
+
+threshold = po.mean(value)
 
 while (True):
-    current_value = serial_reader('port_id', 9600)
+    current_value = serial_reader(port_id, 9600)
     if current_value > (threshold+100):
         flag = 1
     elif current_value < (threshold-100):
