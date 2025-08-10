@@ -1,8 +1,9 @@
 import serial
 import time
 
-delay_minutes = 5 #Time after which the threshold will be set (Refer to Logic)
-time.sleep(delay_minutes * 60)
+delay_seconds = 300 #Time after which the threshold will be set (Refer to Logic)
+time.sleep(delay_seconds)
+
 def serial_reader(port,bitrate=9600,timeout=1):
     data = serial.Serial(port, bitrate, timeout=timeout)
     time.sleep(2)
@@ -18,12 +19,12 @@ def serial_reader(port,bitrate=9600,timeout=1):
 threshold = serial_reader('/dev/ttyUSB0', 9600)
 
 while (True):
-    y = serial_reader('/dev/ttyUSB0', 9600)
-    if y > (threshold+100):
+    current_value = serial_reader('/dev/ttyUSB0', 9600)
+    if current_value > (threshold+100):
         #Slow down
-    elif y < (threshold-100):
+    elif current_value < (threshold-100):
         #Speed up
     else:
-        #I don't know what to put here
+        pass
 
 
