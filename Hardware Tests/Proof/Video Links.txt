@@ -1,4 +1,5 @@
  Hardware Test
 ***************
-
 Arduino Nano - https://youtu.be/01ASgEIgExs
+
+LDR Sensor   - https://youtu.be/ARTZcJ7lvGg
