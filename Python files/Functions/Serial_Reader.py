@@ -1,6 +1,5 @@
 import serial
 import time
-import numpy as po
 
 def serial_reader(port,bitrate=9600,timeout=1):
     data = serial.Serial(port, bitrate, timeout=timeout)
@@ -21,7 +20,7 @@ value = []
 while (time.time() - current_time < 60):
     value.append(serial_reader(port_id, 9600))
 
-threshold = int(po.mean(value))
+threshold = int(sum(value) / len(value))
 
 while (True):
     current_value = serial_reader(port_id, 9600)
