@@ -1,0 +1,7 @@
+The printing speed is regulated using the input received from the Arduino Nano, 
+which itself is the output of the LDR sensor.
+
+There should be a certain basic threshold value to which we can compare the analog values to. Either 
+we can hardcode a value or add a delay of some minutes to script so that the sensor collects a 
+value and set it as a threshold after it is connected for some time. This helps to make sure that 
+the user has settled down and there won't be anymore large fluctuations in the ambient light(Hopefully) :)
