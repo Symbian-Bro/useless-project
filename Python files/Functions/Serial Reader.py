@@ -8,6 +8,9 @@ def serial_reader(port,bitrate=9600,timeout=1):
         if data.in_waiting > 0:
             try:
                 line = int(data.readline().decode('utf-8').strip())
-                print(f"Received: {line}")
+                return line
             except ValueError:
                 continue
+while True:
+    y = serial_reader('/dev/ttyUSB0', 9600)
+    print(y)
