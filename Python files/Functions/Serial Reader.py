@@ -21,9 +21,9 @@ threshold = serial_reader('/dev/ttyUSB0', 9600)
 while (True):
     current_value = serial_reader('/dev/ttyUSB0', 9600)
     if current_value > (threshold+100):
-        #Slow down
+        flag = 1
     elif current_value < (threshold-100):
-        #Speed up
+        flag = 0
     else:
         pass
 
