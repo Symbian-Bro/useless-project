@@ -5,3 +5,16 @@ There should be a certain basic threshold value to which we can compare the anal
 we can hardcode a value or add a delay of some minutes to script so that the sensor collects a 
 value and set it as a threshold after it is connected for some time. This helps to make sure that 
 the user has settled down and there won't be anymore large fluctuations in the ambient light(Hopefully) :)
+
+So my idea goes like this -
+
+If the output from the LDR fluctuates (+-a certain value), the printing speed should get adjusted 
+accordingly. That means at the threshold value, the input speed of user is not tampered with. 
+When the fluctuation is positive, the input speed should slow down and when the fluctuation is 
+negative, the input speed should increase.
+
+But, here is the problem. How am I supposed to increase the printing speed? If a user is typing 
+60 words/minute at the threshold, then according to my logic, the screen would be printing >60 words/minute. That is simply not possible because the user is still typing at their regular pace and it is not >60 words/minute :)
+Don't know what to do about it :)
+Another idea is to lag the user input intentionally from the threshold itself. So when the fluctuation is positive, the lag will increase and when it is negative, decrease the lag and the user will feel that the printing speed has increased :) (Well, that works)
+But the problem is that the user will face a certain amount of lag even at the threshold. Should I be doing anything about it? This is a useless project, so I can let it slide ig :)
