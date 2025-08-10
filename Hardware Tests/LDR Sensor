@@ -1,0 +1,9 @@
+int ldrpin = A3;
+void setup(){
+  pinMode(ldrpin,INPUT);
+  Serial.begin(9600);
+}
+void loop(){
+  int x = analogRead(ldrpin);
+  Serial.println(x);
+}
