@@ -17,11 +17,9 @@ def serial_reader(port,bitrate=9600,timeout=1):
 port_id = port_finder()
 
 current_time = time.time()
-i = 0
 value = []
 while (time.time() - current_time < 60):
-    value[i] = serial_reader(port_id, 9600)
-    i = i+1
+    value.append(serial_reader(port_id, 9600))
 
 threshold = po.mean(value)
 
