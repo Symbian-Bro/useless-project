@@ -1,1 +1,1 @@
-Github storage is unlimited (Hopefully)
+Testing the hardware components to make sure everything is working properly :)
