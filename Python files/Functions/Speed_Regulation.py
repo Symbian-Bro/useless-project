@@ -1,9 +1,13 @@
-import keyboard
-import pyinput
+import time
 
 if (flag==1):
-    #Slow down
+    n = word_counter()
+    if (n>5):
+        print("Word count exceeded 5, please wait 60 seconds to type more.")
+        time.sleep(60)
 elif (flag==0):
-    #Speed up
+    if (n>12):
+        print("Word count exceeded 12, please wait 60 seconds to type more.")
+        time.sleep(60)
 else:
     pass
