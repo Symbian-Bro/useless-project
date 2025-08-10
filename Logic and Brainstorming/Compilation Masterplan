@@ -1,0 +1,19 @@
+ What I have
+*************
+Functions :
+ - Port Checker
+ - Serial connection establishment function
+ - Word Counter
+ - Speed Regulator
+ - Logger function
+
+ Discussion with myself
+************************
+
+The port checker function and the serial connection establisher function should be placed at 
+top of the script. The output of port checker function is used as a parameter to start the 
+serial communication. So, port checker should be placed first.
+
+Currently, the threshold is set after a delay of 5 minutes. This was implemented to give users 
+enough time to settle down. Now, I've got an idea that it would be better to record the LDR 
+for a period of time and then take the average to set the threshold. It sounds better I guess :)
