@@ -21,7 +21,7 @@ value = []
 while (time.time() - current_time < 60):
     value.append(serial_reader(port_id, 9600))
 
-threshold = po.mean(value)
+threshold = int(po.mean(value))
 
 while (True):
     current_value = serial_reader(port_id, 9600)
