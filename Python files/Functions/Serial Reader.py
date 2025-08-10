@@ -16,10 +16,12 @@ def serial_reader(port,bitrate=9600,timeout=1):
             except ValueError:
                 continue
 
-threshold = serial_reader('/dev/ttyUSB0', 9600)
+port_id = port_finder()
+
+threshold = serial_reader('port_id', 9600)
 
 while (True):
-    current_value = serial_reader('/dev/ttyUSB0', 9600)
+    current_value = serial_reader('port_id', 9600)
     if current_value > (threshold+100):
         flag = 1
     elif current_value < (threshold-100):
