@@ -2,6 +2,10 @@ import time
 import keyboard
 import serial
 import serial.tools.list_ports as listing
+import threading
+
+word_count = 0
+buffer = ""
 
 def port_finder():
     port_name = None
