@@ -18,13 +18,13 @@ def port_finder():
     return port_id
 
 def serial_reader(data,timeout=1):
-    while(True):
         if data.in_waiting > 0:
             try:
                 line = int(data.readline().decode('utf-8').strip())
                 return line
             except ValueError:
-                continue
+                return None
+        return None
 
 def word_counter():
     global word_count, buffer
