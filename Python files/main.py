@@ -11,3 +11,6 @@ def port_finder():
             port_id = port.device
             break
     return port_id
+
+data = serial.Serial(port, bitrate, timeout=timeout)
+time.sleep(2)
