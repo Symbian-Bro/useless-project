@@ -71,6 +71,8 @@ if __name__ == "__main__":
  keyboard_thread.start()
  print("You can start typing now...")
 
+    flag = 6
+
  while (True):
      current_value = serial_reader(data)
      if current_value > (threshold+100):
