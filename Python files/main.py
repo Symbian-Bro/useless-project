@@ -48,22 +48,6 @@ def word_counter():
             else:
                 pass
 
-def capture_keypress(event):
-    log_file = "capture.txt"
-    with open(log_file, "a", encoding="utf-8") as f:
-        if event.name == "space":
-            f.write(" ")
-        elif event.name == "enter":
-            f.write("\n")
-        elif event.name == "backspace":
-            f.write("[BACKSPACE]")
-        elif len(event.name) > 1:
-            f.write(f"[{event.name.upper()}]")
-        else:
-            f.write(event.name)
-
-    keyboard.hook(capture_keypress,suppress=True)
-
                                  #Main program
 
 if __name__ == "__main__":
@@ -98,17 +82,17 @@ if __name__ == "__main__":
 
  if (flag==1):
      if (word_count>5):
-         print("Word count exceeded 5, please wait 60 seconds to type more.")
-         crnt_time = time.time()
-         while (time.time() - crnt_time < 60):
-             event = capture_keypress(event)
-         print("You can type again now.")
+        print("Word count exceeded 5, please wait 60 seconds to type more.")
+        time.sleep(60)
+        word_count = 0
+        buffer = ""
+        print("You can type again.")
  elif (flag==0):
      if (word_count>12):
-         print("Word count exceeded 12, please wait 60 seconds to type more.")
-         crnt_time = time.time()
-         while (time.time() - crnt_time < 60):
-             event = capture_keypress(event)
-         print("You can type again now.")
+        print("Word count exceeded 12, please wait 60 seconds to type more.")
+        time.sleep(60)
+        word_count = 0
+        buffer = ""
+        print("You can type again.")
  else:
      pass
