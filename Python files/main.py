@@ -66,49 +66,51 @@ def capture_keypress(event):
     keyboard.hook(capture_keypress,suppress=True)
 
                                  #Main program
-port_id = port_finder()
-if not port_id:
-    print("Please check your Arduino connection.")
-    sys.exit()
 
-data = serial.Serial(port_id, 9600, timeout=timeout)
-time.sleep(2)
+if __name__ == "__main__":
+ port_id = port_finder()
+ if not port_id:
+     print("Please check your Arduino connection.")
+     sys.exit()
 
-print("Please wait for 60 seconds...")
-current_time = time.time()
-value = []
-while (time.time() - current_time < 60):
-    value.append(serial_reader(data))
+ data = serial.Serial(port_id, 9600, timeout=timeout)
+ time.sleep(2)
 
-threshold = int(sum(value) / len(value))
+ print("Please wait for 60 seconds...")
+ current_time = time.time()
+ value = []
+ while (time.time() - current_time < 60):
+     value.append(serial_reader(data))
 
-keyboard_thread = threading.Thread(target=word_counter, daemon=True)
-keyboard_thread.start()
-print("You can start typing now...")
+ threshold = int(sum(value) / len(value))
 
-while (True):
-    current_value = serial_reader(data)
-    if current_value > (threshold+100):
-        flag = 1
-    elif current_value < (threshold-100):
-        flag = 0
-    else:
-        pass
+ keyboard_thread = threading.Thread(target=word_counter, daemon=True)
+ keyboard_thread.start()
+ print("You can start typing now...")
 
-if (flag==1):
-    n = word_counter()
-    if (n>5):
-        print("Word count exceeded 5, please wait 60 seconds to type more.")
-        crnt_time = time.time()
-        while (time.time() - crnt_time < 60):
-            event = capture_keypress(event)
-        print("You can type again now.")
-elif (flag==0):
-    if (n>12):
-        print("Word count exceeded 12, please wait 60 seconds to type more.")
-        crnt_time = time.time()
-        while (time.time() - crnt_time < 60):
-            event = capture_keypress(event)
-        print("You can type again now.")
-else:
-    pass
+ while (True):
+     current_value = serial_reader(data)
+     if current_value > (threshold+100):
+         flag = 1
+     elif current_value < (threshold-100):
+         flag = 0
+     else:
+         pass
+
+ if (flag==1):
+     n = word_counter()
+     if (n>5):
+         print("Word count exceeded 5, please wait 60 seconds to type more.")
+         crnt_time = time.time()
+         while (time.time() - crnt_time < 60):
+             event = capture_keypress(event)
+         print("You can type again now.")
+ elif (flag==0):
+     if (n>12):
+         print("Word count exceeded 12, please wait 60 seconds to type more.")
+         crnt_time = time.time()
+         while (time.time() - crnt_time < 60):
+             event = capture_keypress(event)
+         print("You can type again now.")
+ else:
+     pass
