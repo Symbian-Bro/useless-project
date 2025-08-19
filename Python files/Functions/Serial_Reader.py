@@ -1,7 +1,7 @@
 import serial
 import time
 
-def serial_reader(port,bitrate=9600,timeout=1):
+def serial_reader(data,timeout=1):
     while(True):
         if data.in_waiting > 0:
             try:
