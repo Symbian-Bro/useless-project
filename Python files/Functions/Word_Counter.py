@@ -1,7 +1,6 @@
 import keyboard
 
-buffer = ""
-word_count = 0
+global word_count, buffer
 
 def word_counter():
     while True:
