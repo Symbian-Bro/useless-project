@@ -58,10 +58,13 @@ if not port_id:
 data = serial.Serial(port_id, 9600, timeout=timeout)
 time.sleep(2)
 
-print("Please wait for 60 secoonds...")
+print("Please wait for 60 seconds...")
 current_time = time.time()
 value = []
 while (time.time() - current_time < 60):
     value.append(serial_reader(data))
 
 threshold = int(sum(value) / len(value))
+
+keyboard_thread = threading.Thread(target=word_counter, daemon=True)
+keyboard_thread.start()
