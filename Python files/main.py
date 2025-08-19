@@ -84,6 +84,7 @@ threshold = int(sum(value) / len(value))
 
 keyboard_thread = threading.Thread(target=word_counter, daemon=True)
 keyboard_thread.start()
+print("You can start typing now...")
 
 while (True):
     current_value = serial_reader(data)
@@ -101,11 +102,13 @@ if (flag==1):
         crnt_time = time.time()
         while (time.time() - crnt_time < 60):
             event = capture_keypress(event)
+        print("You can type again now.")
 elif (flag==0):
     if (n>12):
         print("Word count exceeded 12, please wait 60 seconds to type more.")
         crnt_time = time.time()
         while (time.time() - crnt_time < 60):
             event = capture_keypress(event)
+        print("You can type again now.")
 else:
     pass
