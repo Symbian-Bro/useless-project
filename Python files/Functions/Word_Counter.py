@@ -1,8 +1,7 @@
 import keyboard
 
-global word_count, buffer
-
 def word_counter():
+    global word_count, buffer
     while True:
         event = keyboard.read_event()
         if event.event_type == keyboard.KEY_DOWN:

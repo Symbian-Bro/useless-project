@@ -28,18 +28,3 @@ def serial_reader(data,timeout=1):
             except ValueError:
                 continue
 
-current_time = time.time()
-value = []
-while (time.time() - current_time < 60):
-    value.append(serial_reader(data))
-
-threshold = int(sum(value) / len(value))
-
-while (True):
-    current_value = serial_reader(data)
-    if current_value > (threshold+100):
-        flag = 1
-    elif current_value < (threshold-100):
-        flag = 0
-    else:
-        pass
