@@ -98,15 +98,14 @@ if __name__ == "__main__":
          pass
 
  if (flag==1):
-     n = word_counter()
-     if (n>5):
+     if (word_count>5):
          print("Word count exceeded 5, please wait 60 seconds to type more.")
          crnt_time = time.time()
          while (time.time() - crnt_time < 60):
              event = capture_keypress(event)
          print("You can type again now.")
  elif (flag==0):
-     if (n>12):
+     if (word_count>12):
          print("Word count exceeded 12, please wait 60 seconds to type more.")
          crnt_time = time.time()
          while (time.time() - crnt_time < 60):
