@@ -3,6 +3,7 @@ import keyboard
 import serial
 import serial.tools.list_ports as listing
 import threading
+import sys
 
 word_count = 0
 buffer = ""
@@ -51,3 +52,8 @@ def word_counter():
                 pass
     return word_count
 
+                                 #Main program
+port_id = port_finder()
+if not port_id:
+    print("Please check your Arduino connection.")
+    sys.exit()
