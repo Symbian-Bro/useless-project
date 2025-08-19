@@ -17,9 +17,6 @@ def port_finder():
             break
     return port_id
 
-data = serial.Serial(port_id, 9600, timeout=timeout)
-time.sleep(2)
-
 def serial_reader(data,timeout=1):
     while(True):
         if data.in_waiting > 0:
@@ -57,3 +54,14 @@ port_id = port_finder()
 if not port_id:
     print("Please check your Arduino connection.")
     sys.exit()
+
+data = serial.Serial(port_id, 9600, timeout=timeout)
+time.sleep(2)
+
+print("Please wait for 60 secoonds...")
+current_time = time.time()
+value = []
+while (time.time() - current_time < 60):
+    value.append(serial_reader(data))
+
+threshold = int(sum(value) / len(value))
