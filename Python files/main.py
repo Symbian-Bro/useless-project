@@ -47,7 +47,6 @@ def word_counter():
                 buffer = buffer[:-1] if buffer else ""
             else:
                 pass
-    return word_count
 
 def capture_keypress(event):
     log_file = "capture.txt"
@@ -73,7 +72,7 @@ if __name__ == "__main__":
      print("Please check your Arduino connection.")
      sys.exit()
 
- data = serial.Serial(port_id, 9600, timeout=timeout)
+ data = serial.Serial(port_id, 9600, timeout=1)
  time.sleep(2)
 
  print("Please wait for 60 seconds...")
