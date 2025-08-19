@@ -68,3 +68,12 @@ threshold = int(sum(value) / len(value))
 
 keyboard_thread = threading.Thread(target=word_counter, daemon=True)
 keyboard_thread.start()
+
+while (True):
+    current_value = serial_reader(data)
+    if current_value > (threshold+100):
+        flag = 1
+    elif current_value < (threshold-100):
+        flag = 0
+    else:
+        pass
