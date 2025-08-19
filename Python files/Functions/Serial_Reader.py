@@ -10,17 +10,15 @@ def serial_reader(data,timeout=1):
             except ValueError:
                 continue
 
-port_id = port_finder()
-
 current_time = time.time()
 value = []
 while (time.time() - current_time < 60):
-    value.append(serial_reader(port_id, 9600))
+    value.append(serial_reader(data))
 
 threshold = int(sum(value) / len(value))
 
 while (True):
-    current_value = serial_reader(port_id, 9600)
+    current_value = serial_reader(data)
     if current_value > (threshold+100):
         flag = 1
     elif current_value < (threshold-100):
