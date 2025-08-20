@@ -73,10 +73,10 @@ if __name__ == "__main__":
 
  keyboard.hook(keyboard_hook,suppress=True)
 
- print("Please wait for 60 seconds...")
+ print("Please wait for 10 seconds...")
  current_time = time.time()
  value = []
- while (time.time() - current_time < 60):
+ while (time.time() - current_time < 10):
     if serial_reader(data) == None:
         continue
     else:
