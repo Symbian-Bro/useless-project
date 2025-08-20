@@ -27,6 +27,12 @@ def serial_reader(data,timeout=1):
                 return None
         return None
 
+def keyboard_hook(event):
+    global block_flag
+    if block_flag:
+        return True
+    return False
+
 def word_counter():
     global word_count, buffer, block_flag
 
@@ -64,6 +70,8 @@ if __name__ == "__main__":
 
  data = serial.Serial(port_id, 9600, timeout=1)
  time.sleep(2)
+
+ keyboard.hook(keyboard_hook)
 
  print("Please wait for 60 seconds...")
  current_time = time.time()
