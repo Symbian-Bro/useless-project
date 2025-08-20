@@ -71,7 +71,7 @@ if __name__ == "__main__":
  data = serial.Serial(port_id, 9600, timeout=1)
  time.sleep(2)
 
- keyboard.hook(keyboard_hook)
+ keyboard.hook(keyboard_hook,suppress=True)
 
  print("Please wait for 60 seconds...")
  current_time = time.time()
