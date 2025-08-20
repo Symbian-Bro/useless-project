@@ -71,16 +71,16 @@ if __name__ == "__main__":
  keyboard_thread.start()
  print("You can start typing now...")
 
-    flag = 6
+ flag = 6
 
  while (True):
-     current_value = serial_reader(data)
-     if current_value > (threshold+100):
-         flag = 1
-     elif current_value < (threshold-100):
-         flag = 0
-     else:
-         pass
+    current_value = serial_reader(data)
+    if current_value > (threshold+100):
+        flag = 1
+    elif current_value < (threshold-100):
+        flag = 0
+    else:
+        pass
 
     if (flag==1):
         if (word_count>5):
