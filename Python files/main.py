@@ -7,6 +7,7 @@ import sys
 
 word_count = 0
 buffer = ""
+block_flag = False
 
 def port_finder():
     port_name = None
