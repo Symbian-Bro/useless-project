@@ -69,6 +69,7 @@ if __name__ == "__main__":
         value.append(serial_reader(data))
 
  threshold = int(sum(value) / len(value))
+ print("The threshold value is :", threshold)
 
  keyboard_thread = threading.Thread(target=word_counter, daemon=True)
  keyboard_thread.start()
@@ -80,9 +81,9 @@ if __name__ == "__main__":
     current_value = serial_reader(data)
     if current_value is None:
         continue
-    if current_value > (threshold+100):
+    if current_value > (threshold+200):
         flag = 1
-    elif current_value < (threshold-100):
+    elif current_value < (threshold-200):
         flag = 0
     else:
         pass
