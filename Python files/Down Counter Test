@@ -1,0 +1,8 @@
+import time
+
+i = 0
+current_time = time.time()
+while (time.time() - current_time <= 10):
+ time.sleep(1)
+ i = i+1
+ print(f"Please wait for {int(i)} seconds...",end="\r")
