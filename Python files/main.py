@@ -64,7 +64,7 @@ if __name__ == "__main__":
  value = []
  while (time.time() - current_time < 60):
     if serial_reader(data) == None:
-        break
+        continue
     else:
         value.append(serial_reader(data))
 
@@ -78,6 +78,8 @@ if __name__ == "__main__":
 
  while (True):
     current_value = serial_reader(data)
+    if current_value is None:
+        continue
     if current_value > (threshold+100):
         flag = 1
     elif current_value < (threshold-100):
