@@ -63,7 +63,10 @@ if __name__ == "__main__":
  current_time = time.time()
  value = []
  while (time.time() - current_time < 60):
-     value.append(serial_reader(data))
+    if serial_reader(data) == None:
+        break
+    else:
+        value.append(serial_reader(data))
 
  threshold = int(sum(value) / len(value))
 
