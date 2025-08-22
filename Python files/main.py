@@ -73,14 +73,17 @@ if __name__ == "__main__":
 
  keyboard.hook(keyboard_hook,suppress=True)
 
- print("Please wait for 10 seconds...")
  current_time = time.time()
  value = []
+ i = 10
  while (time.time() - current_time < 10):
     if serial_reader(data) == None:
         continue
     else:
         value.append(serial_reader(data))
+    print(f"Please wait for {i} seconds...", end="\r")
+    i -= 1
+    time.sleep(1)
 
  threshold = int(sum(value) / len(value))
  print("The threshold value is :", threshold)
