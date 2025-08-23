@@ -2,7 +2,6 @@ import time
 import keyboard
 import serial
 import serial.tools.list_ports as listing
-import threading
 import sys
 
 word_count = 0
@@ -28,37 +27,31 @@ def serial_reader(data,timeout=1):
         return None
 
 def keyboard_hook(event):
-    global block_flag
+    global block_flag, word_count, buffer
+    
+    # If blocking is active, suppress all key events
     if block_flag:
         return True
+    
+    # Only process key down events for word counting
+    if event.event_type == keyboard.KEY_DOWN:
+        key = event.name
+
+        if key == "space":
+            if buffer:
+                word_count = word_count + 1
+                buffer = ""
+        elif len(key) == 1:  
+            buffer = buffer + key
+        elif key == "enter":
+            if buffer:
+                word_count = word_count + 1
+                buffer = ""
+        elif key == "backspace":
+            buffer = buffer[:-1] if buffer else ""
+    
+    # Don't suppress the key if not blocking
     return False
-
-def word_counter():
-    global word_count, buffer, block_flag
-
-    while True:
-        event = keyboard.read_event()
-
-        if block_flag:
-            continue
-
-        if event.event_type == keyboard.KEY_DOWN:
-            key = event.name
-
-            if key == "space":
-                if buffer:
-                    word_count = word_count + 1
-                    buffer = ""
-            elif len(key) == 1:  
-                buffer = buffer + key
-            elif key == "enter":
-                if buffer:
-                    word_count = word_count + 1
-                    buffer = ""
-            elif key == "backspace":
-                buffer = buffer[:-1] if buffer else ""
-            else:
-                pass
 
                                  #Main program
 
@@ -87,9 +80,6 @@ if __name__ == "__main__":
 
  threshold = int(sum(value) / len(value))
  print("The threshold value is :", threshold)
-
- keyboard_thread = threading.Thread(target=word_counter, daemon=True)
- keyboard_thread.start()
  print("You can start typing now...")
 
  flag = 6
